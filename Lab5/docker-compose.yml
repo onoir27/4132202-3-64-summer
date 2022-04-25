@@ -1,13 +1,12 @@
 version: '3'
 
 services:
-  mysql:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: db_test
+  ssh:
+    image: rastasheep/ubuntu-sshd
     ports:
-      - "3306:3306"
+      - "2222:22"
+    volumes:
+      - "./home:/home"
   nginx:
     image: bunthita27/4132202-3-64-lab3:lastest
     ports:
@@ -15,7 +14,7 @@ services:
     volumes:
       - ./www:/var/www/html
     depends_on:
-      - mysql
+       - ssh
 
 
   
